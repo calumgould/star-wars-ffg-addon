@@ -7,7 +7,6 @@ Hooks.once("socketlib.ready", () => {
   socketlib.register("executeMacro", executeMacro);
 });
 
-
 async function executeMacro(macroName: string) {
   const macro = game.macros.getName(macroName);
 

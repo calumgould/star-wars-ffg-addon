@@ -131,8 +131,8 @@ const calculateDamage = async () => {
   })
 }
 
-const triggerDamageCalculation = () => {
-  socketlib.executeAsGM("calculateDamage");
+const triggerDamageCalculation = async () => {
+  await socketlib.executeAsGM("executeMacro", "Damage Calculator");
 };
 
 triggerDamageCalculation();
