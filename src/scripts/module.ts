@@ -29,12 +29,13 @@ Hooks.once('socketlib.ready', () => {
     await macro.execute();
   });
 
-  Hooks.on('chatMessage', async (message: any) => {
+  Hooks.on('createChatMessage', async (message: any) => {
     console.log('Chat message created:', message);
 
     const attackKeywords = ['RangedHeavy', 'RangedLight', 'Melee', 'Lightsaber', 'Gunnery', 'Brawl']
 
     if (
+      game.user.isGM &&
       attackKeywords.some((keyword) => message.flavor && message.flavor.replace(/[:\s]/g, '').includes(keyword)) &&
       message.rolls.length &&
       message.rolls[0].data.type === 'weapon'
