@@ -2,6 +2,7 @@ import { defineConfig, Plugin } from 'vite'
 import copy from 'rollup-plugin-copy'
 import * as fsPromises from 'fs/promises'
 import fs from 'fs-extra'
+import path from 'path'
 
 const moduleVersion = process.env.MODULE_VERSION
 const githubProject = process.env.GH_PROJECT
@@ -46,6 +47,33 @@ const updateModuleManifestPlugin = (): Plugin => {
   }
 }
 
+const flattenMacrosPlugin = (): Plugin => {
+  return {
+    name: 'flatten-macros',
+    apply: 'build',
+    enforce: 'post',
+    async closeBundle() {
+      const srcPath = path.resolve('src/packs/macros-star-wars-ffg.json')
+      const destDir = path.resolve('dist/packs')
+      const destPath = path.join(destDir, 'macros-star-wars-ffg.db')
+
+      try {
+        const data = await fs.readFile(srcPath, 'utf-8')
+        const json = JSON.parse(data)
+
+        await fs.mkdir(destDir)
+
+        const lines = json.map((entry: object) => JSON.stringify(entry)).join('\n')
+
+        await fs.writeFile(destPath, lines, 'utf-8')
+        console.log(`Flattened macros to ${destPath}`)
+      } catch (err) {
+        console.error('Failed to flatten macros:', err)
+      }
+    },
+  }
+}
+
 export default defineConfig({
   build: {
     sourcemap: true,
@@ -61,11 +89,11 @@ export default defineConfig({
   plugins: [
     cleanBuild(),
     updateModuleManifestPlugin(),
+    flattenMacrosPlugin(),
     copy({
       targets: [
         { src: 'src/assets', dest: 'dist' },
         { src: 'src/lang', dest: 'dist' },
-        { src: 'src/packs', dest: 'dist' },
         { src: 'src/styles', dest: 'dist' },
         { src: 'src/templates', dest: 'dist' },
         { src: 'src/scripts/macros', dest: 'dist/scripts' },
