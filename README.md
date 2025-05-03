@@ -17,17 +17,16 @@ TODO
 
 Update the version in `package.json` and `module.json`
 First run
+
 ```shell
 npm run build
 ```
 
 Then bundling the macro itself takes a bit more work.
 
-1. Create a macro in foundry, ideally on a fresh world so it's the only macro there
-2. Quit Foundry
-3. Navigate to where the macros are stored, e.g. `C:\Users\YourName\AppData\Local\FoundryVTT\Data\worlds\world-name\data\macros`
-4. Copy everything here except the log file to the `packs/star-wars-ffg-addon`
-5. Commit those changes and you're ready to make a release!
+1. Create the macro in Foundry, then right click and export the JSON.
+2. Update `src/packs/macros-star-wars-ffg.json` with what you exported.
+3. Commit those changes and you're ready to make a release!
 
 Go to [Releases](https://github.com/calumgould/star-wars-ffg-addon/releases) and create a new release.
 
