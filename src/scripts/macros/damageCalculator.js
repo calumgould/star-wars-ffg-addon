@@ -1,37 +1,3 @@
-const getSelectedToken = () => {
-  const selectedTokens = canvas.tokens.controlled
-
-  if (selectedTokens.length > 1) {
-    console.warn('More than one token selected, the first one selected will be used. If you get unexpected results please only select one token.')
-  }
-
-  return selectedTokens[0]
-}
-
-const getAttacker = () => {
-  const selectedToken = getSelectedToken()
-
-  // If user selected a token, use that token's data
-  if (selectedToken) {
-    return { token: selectedToken, actor: selectedToken.actor }
-  }
-
-  // If no token is selected, try and fallback to the user's character
-  if (!game.user.character) {
-    return { actor: null, token: null }
-  }
-
-  const actor = game.user.character
-
-  const tokens = actor.getActiveTokens()
-
-  if (tokens.length > 1) {
-    console.warn('More than one active token found for character, the first one will be used. If you get unexpected results please select a specific token instead.')
-  }
-
-  return { actor, token: tokens[0] }
-}
-
 const getLastAttackFromChat = (actor) => {
   const attackKeywords = ['RangedHeavy', 'RangedLight', 'Melee', 'Lightsaber', 'Gunnery', 'Brawl']
 
@@ -42,7 +8,11 @@ const getLastAttackFromChat = (actor) => {
       attackKeywords.some((keyword) => message.flavor.replace(/[:\s]/g, '').includes(keyword)) && message.rolls.length && message.rolls[0].data.type === 'weapon' && message.speaker.actor === actor.id
   )
 
-  return lastAttackMessage
+  const attackerActorId = lastAttackMessage.speaker.actor
+
+  const attacker = game.actors.get(attackerActorId)
+
+  return { lastAttackMessage, attacker }
 }
 
 const getActorStats = (actor) => ({
@@ -66,14 +36,12 @@ const getWeaponModifiers = (weapon) => {
 }
 
 const calculateDamage = async () => {
-  const { actor } = getAttacker()
+  const { lastAttackMessage, attacker } = getLastAttackFromChat(actor)
 
-  if (!actor) {
+  if (!attacker) {
     ui.notifications.error('No token found.')
     return
   }
-
-  const lastAttackMessage = getLastAttackFromChat(actor)
 
   const attackerName = lastAttackMessage.speaker.alias
 
