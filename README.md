@@ -26,7 +26,8 @@ Then bundling the macro itself takes a bit more work.
 
 1. Create the macro in Foundry, then right click and export the JSON.
 2. Update `src/packs/macros-star-wars-ffg.json` with what you exported.
-3. Commit those changes and you're ready to make a release!
+3. Make sure not to override the `_id` field.
+4. Commit those changes and you're ready to make a release!
 
 Go to [Releases](https://github.com/calumgould/star-wars-ffg-addon/releases) and create a new release.
 

@@ -1,6 +1,6 @@
 [
   {
-    "_id": "damage-calculator-macro",
+    "_id": "star-wars-ffg-damage-calculator-macro",
     "name": "Damage Calculator",
     "type": "script",
     "scope": "global",
