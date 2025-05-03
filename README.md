@@ -25,9 +25,8 @@ Then bundling the macro itself takes a bit more work.
 1. Create a macro in foundry, ideally on a fresh world so it's the only macro there
 2. Quit Foundry
 3. Navigate to where the macros are stored, e.g. `C:\Users\YourName\AppData\Local\FoundryVTT\Data\worlds\world-name\data\macros`
-4. Copy everything here expect the log file to the `packs/star-wars-ffg-addon`
-
-Once you've done this, you're ready to make a release.
+4. Copy everything here except the log file to the `packs/star-wars-ffg-addon`
+5. Commit those changes and you're ready to make a release!
 
 Go to [Releases](https://github.com/calumgould/star-wars-ffg-addon/releases) and create a new release. Make sure to bump the tag and `package.json` version.
 
