@@ -1,0 +1,21 @@
+{
+  "name": "star-wars-ffg-addon",
+  "private": true,
+  "version": "0.0.1",
+  "author": {
+    "name": "Calum Gould"
+  },
+  "scripts": {
+    "build": "tsc && vite build",
+    "prettier": "prettier --write ."
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2",
+    "typescript": "~5.6.2",
+    "vite": "^6.0.5"
+  },
+  "dependencies": {
+    "fs-extra": "^11.3.0",
+    "rollup-plugin-copy": "^3.5.0"
+  }
+}
