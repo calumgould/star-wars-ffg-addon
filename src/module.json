@@ -21,7 +21,12 @@
         "manifest": "https://raw.githubusercontent.com/StarWarsFoundryVTT/StarWarsFFG/refs/heads/main/system.json"
       }
     ],
-    "requires": []
+    "requires": [
+      {
+        "id": "socketlib",
+        "type": "module"
+      }
+    ]
   },
   "socket": true,
   "esmodules": ["scripts/module.js"],
