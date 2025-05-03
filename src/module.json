@@ -24,11 +24,11 @@
     "requires": [
       {
         "id": "socketlib",
-        "name": "socketlib",
         "type": "module"
       }
     ]
   },
+  "socket": true,
   "esmodules": ["scripts/module.js"],
   "packFolders": [
     {
