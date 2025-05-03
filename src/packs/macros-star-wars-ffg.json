@@ -1,5 +1,6 @@
 [
   {
+    "_id": "damage-calculator-macro",
     "name": "Damage Calculator",
     "type": "script",
     "scope": "global",
