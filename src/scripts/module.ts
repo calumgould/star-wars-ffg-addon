@@ -39,6 +39,7 @@ Hooks.once('socketlib.ready', () => {
       message.rolls.length &&
       message.rolls[0].data.type === 'weapon'
     ) {
+      console.log("Chat message is an attack, running the macro")
       await socket.executeAsGM('runDamageCalculatorMacro');
     } else {
       console.log("Chat message is not an attack so there is nothing to do")
