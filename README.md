@@ -15,6 +15,7 @@ TODO
 
 ## Creating a new release
 
+Update the version in `package.json` and `module.json`
 First run
 ```shell
 npm run build
@@ -28,6 +29,6 @@ Then bundling the macro itself takes a bit more work.
 4. Copy everything here except the log file to the `packs/star-wars-ffg-addon`
 5. Commit those changes and you're ready to make a release!
 
-Go to [Releases](https://github.com/calumgould/star-wars-ffg-addon/releases) and create a new release. Make sure to bump the tag and `package.json` version.
+Go to [Releases](https://github.com/calumgould/star-wars-ffg-addon/releases) and create a new release.
 
 The github workflow should take care of the rest and add the final bundle files to the release once it completes.
