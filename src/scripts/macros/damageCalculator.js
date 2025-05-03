@@ -131,4 +131,12 @@ const calculateDamage = async () => {
   })
 }
 
-calculateDamage()
+Hooks.once("socketlib.ready", () => {
+  socketlib.registerModule("star-wars-ffg-addon")
+
+  async function triggerDamageCalculation() {
+    await socketlib.executeAsGM("calculateDamage");
+  }
+
+  triggerDamageCalculation();
+});
