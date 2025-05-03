@@ -6,3 +6,4 @@ declare const canvas: any
 declare const ChatMessage: any
 declare const Dialog: any
 declare const Macro: any
+declare const socketlib: any
