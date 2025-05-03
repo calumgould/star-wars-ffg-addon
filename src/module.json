@@ -23,6 +23,7 @@
     ],
     "requires": [
       {
+        "id": "socketlib",
         "name": "socketlib",
         "type": "module"
       }
