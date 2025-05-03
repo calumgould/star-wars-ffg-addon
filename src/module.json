@@ -34,7 +34,7 @@
     {
       "name": "star-wars-ffg-addon-macros",
       "label": "Star Wars FFG Addon Macros",
-      "path": "packs/macros-star-wars-ffg",
+      "path": "packs/macros-star-wars-ffg.db",
       "module": "star-wars-ffg-addon",
       "type": "Macro"
     }
