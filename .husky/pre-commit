@@ -1,1 +1,1 @@
-yarn build && git add src/packs/macros-star-wars-ffg.json
+yarn macros:embed && git add src/packs/*
