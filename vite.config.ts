@@ -47,6 +47,26 @@ const updateModuleManifestPlugin = (): Plugin => {
   }
 }
 
+const embedMacros = (): Plugin => {
+  return {
+    name: 'embed-macros',
+    buildStart() {
+      const damageCalculatorMacro = {
+        _id: 'star-wars-ffg-damage-calculator-macro',
+        name: 'Damage Calculator',
+        type: 'script',
+        scope: 'global',
+        command: fs.readFileSync('src/scripts/macros/damageCalculator.js', 'utf8'),
+      }
+
+      fs.writeFileSync(
+        path.resolve('src/packs/macros-star-wars-ffg.json'),
+        JSON.stringify([damageCalculatorMacro], null, 2)
+      )
+    }
+  }
+}
+
 const flattenMacrosPlugin = (): Plugin => {
   return {
     name: 'flatten-macros',
@@ -89,6 +109,7 @@ export default defineConfig({
   plugins: [
     cleanBuild(),
     updateModuleManifestPlugin(),
+    embedMacros(),
     flattenMacrosPlugin(),
     copy({
       targets: [

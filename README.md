@@ -11,9 +11,51 @@ If you just want the macro to copy and paste into your game you get find it here
 
 ## Current Features
 
-TODO
+### Damage Calculator
 
-## Creating a new release
+Macro that reads the latest attack from the chat messages and calculates the damage applied to the targeted token from the character who made the attack.
+
+This macro is auto-triggered when an attack roll is made.
+
+#### Features
+
+Currently this only handles basic attacks and vehicle damage is not handled.
+
+So far the logic covers the basics, plus:
+- Pierce
+- Breach
+- Strain damage
+
+## Development
+
+### Local Development
+
+In order to test this without needing to create a new release everytime you'd need to test changes to this module on Foundry, you can create a symlink to the `dist` folder in your Foundry modules.
+
+#### Windows
+
+Open PowerShell as an admin and run:
+```shell
+New-Item -ItemType SymbolicLink -Target "$(pwd)\dist" -Path "$env:LOCALAPPDATA\FoundryVTT\Data\modules\star-wars-ffg-addon"
+```
+
+#### MacOS
+
+Open your preferred Terminal client and run:
+```
+ln -s $PWD/dist $HOME/Library/Application\ Support/FoundryVTT/Data/modules/star-wars-ffg-addon
+```
+
+Once this is done, the module should show up in your Foundry client and reflect the code you have locally.
+
+To test any changes you make now, follow the below steps:
+1. Close Foundry
+2. Run `yarn build`
+3. Re-open Foundry
+
+Now the module should have updated for your local changes.
+
+### Creating a new release
 
 Update the version in `package.json` and `module.json`
 First run

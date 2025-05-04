@@ -8,8 +8,6 @@ const getLastAttackFromChat = () => {
       attackKeywords.some((keyword) => message.flavor.replace(/[:\s]/g, '').includes(keyword)) && message.rolls.length && message.rolls[0].data.type === 'weapon'
   )
 
-  console.log('Last Attack Message:', lastAttackMessage)
-
   const attackerActorId = lastAttackMessage.speaker.actor
 
   const attacker = game.actors.get(attackerActorId)
@@ -40,14 +38,20 @@ const getWeaponModifiers = (weapon) => {
 const calculateDamage = async () => {
   const { lastAttackMessage, attacker } = getLastAttackFromChat()
 
-  console.log('Attacker:', attacker)
-
   if (!attacker) {
-    ui.notifications.error('No token found.')
+    ui.notifications.error('No attacker token found.')
     return
   }
 
-  const attackerName = lastAttackMessage.speaker.alias
+  const targets = lastAttackMessage.user.targets
+
+  if (!targets.size) {
+    ui.notifications.info('No tokens targeted.')
+    return
+  }
+
+  const attackerName = attacker.name
+  const target = await canvas.tokens.get(targets.ids[0])
 
   const success = lastAttackMessage.rolls[0].ffg.success
 
@@ -59,19 +63,6 @@ const calculateDamage = async () => {
     })
     return
   }
-
-  const targets = lastAttackMessage.user.targets
-
-  console.log('Targets:', targets)
-
-  if (!targets.size) {
-    ui.notifications.info('No tokens targeted.')
-    return
-  }
-
-  const target = await canvas.tokens.get(targets.ids[0])
-
-  console.log('Target:', target)
 
   const targetStats = getActorStats(target.actor)
 
