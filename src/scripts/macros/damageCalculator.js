@@ -88,7 +88,7 @@ const calculateDamage = async () => {
   let chatMessage = `${attackerName} hits ${target.name} with ${weapon.name} for ${totalDamage} ${damageType === 'strain' ? 'strain' : ''} damage.`
 
   if (currentStat + damageAfterSoak > maxStat) {
-    chatMessage += ` ${target.name} is incapacitated.`
+    chatMessage += ` ${target.name} is down!`
   }
 
   await ChatMessage.create({
