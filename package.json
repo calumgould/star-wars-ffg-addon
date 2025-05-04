@@ -1,12 +1,13 @@
 {
   "name": "star-wars-ffg-addon",
   "private": true,
-  "version": "0.1.1",
+  "version": "0.2.0",
   "author": {
     "name": "Calum Gould"
   },
   "scripts": {
     "build": "tsc && vite build",
+    "build:dev": "tsc && yarn macros:embed && vite build",
     "prettier": "prettier --write .",
     "prepare": "husky",
     "macros:embed": "ts-node src/scripts/embedMacros.ts"

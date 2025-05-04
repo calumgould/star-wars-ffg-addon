@@ -7,6 +7,7 @@ const embedMacros = () => {
       name: 'Damage Calculator',
       type: 'script',
       scope: 'global',
+      img: "modules/star-wars-ffg-addon/assets/calculator.svg",
       command: fs.readFileSync('src/scripts/macros/damageCalculator.js', 'utf8'),
     };
 
@@ -14,7 +15,6 @@ const embedMacros = () => {
       path.resolve('src/packs/macros-star-wars-ffg.json'),
       JSON.stringify([damageCalculatorMacro], null, 2)
     );
-    console.log('Macros embedded successfully!');
   }
 
 embedMacros();

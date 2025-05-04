@@ -50,7 +50,7 @@ Once this is done, the module should show up in your Foundry client and reflect 
 
 To test any changes you make now, follow the below steps:
 1. Close Foundry
-2. Run `yarn build`
+2. Run `yarn build:dev` (this will also embed macros as well as running the normal build)
 3. Re-open Foundry
 
 Now the module should have updated for your local changes.
@@ -58,18 +58,8 @@ Now the module should have updated for your local changes.
 ### Creating a new release
 
 Update the version in `package.json` and `module.json`
-First run
 
-```shell
-npm run build
-```
-
-Then bundling the macro itself takes a bit more work.
-
-1. Create the macro in Foundry, then right click and export the JSON.
-2. Update `src/packs/macros-star-wars-ffg.json` with what you exported.
-3. Make sure not to override the `_id` field.
-4. Commit those changes and you're ready to make a release!
+Commit your latest changes, this will automatically generate the `.json` file for the macros.
 
 Go to [Releases](https://github.com/calumgould/star-wars-ffg-addon/releases) and create a new release.
 
